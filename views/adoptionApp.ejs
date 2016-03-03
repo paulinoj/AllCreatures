@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include head %>
+  <body class="adoption">
+
+   <div class="container">
+
+   <% include navbar %>
+
+          <div class="panel panel-primary">
+
+            <div class="panel-heading">
+              <div class="webPageHeading">All Creatures’ ADOPTER PROFILE APPLICATION</div>
+            </div>
+
+<!--             <div class="panel-body">
+              <img id = "bird" src="images/ValentinoCopy.jpg" alt="" width = "100%" height = "100%" />
+            </div>
+ -->
+          </div>
+
+          <div class="well bs-component">
+            <form action="/adoptionApp" class="form-horizontal" method="post">
+              <fieldset>
+ 
+                 <div class="form-group">
+                    <label for="inputName" class="col-lg-3 control-label">Name</label>
+                    <div class="col-lg-9">
+                      <input name="inputName" type="text" class="form-control" id="inputName">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputSpouse" class="col-lg-3 control-label">Spouse/Partner</label>
+                    <div class="col-lg-9">
+                      <input name="inputSpouse" type="text" class="form-control" id="inputSpouse">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputAddress" class="col-lg-3 control-label">Address</label>
+                    <div class="col-lg-9">
+                      <input name="inputAddress" type="text" class="form-control" id="inputAddress">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do You Own or Rent?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="ownOrRent" type="radio" id="optionsRadios1" value="Own">
+                          Own
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ownOrRent" type="radio" id="optionsRadios2" value="Rent">
+                          Rent
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Dwelling type?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="dwellingType" type="radio" id="dwellOptions1" value="House" >
+                          House
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="dwellingType" type="radio" id="dwellOptions2" value="Apartment">
+                          Apartment
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="dwellingType" type="radio" id="dwellOptions3" value="Condo">
+                          Condo
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="dwellingType" type="radio" name="optionsRadios" id="dwellOptions4" value="Other">
+                          Other
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputHowLong" class="col-lg-3 control-label">How long?</label>
+                    <div class="col-lg-9">
+                      <input name="inputHowLong" type="text" class="form-control" id="inputHowLong">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">If you rent, does owner/management allow animals?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="animalsAllowed" type="radio" id="optionsAnimalsAllowed1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="animalsAllowed" type="radio" id="optionsAnimalsAllowed2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Is it written in your lease?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="allowedInLease" type="radio" id="optionsLease1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="allowedInLease" type="radio" id="optionsLease2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Age Range</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions1" value="20s">
+                          20s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions2" value="30s">
+                          30s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions3" value="40s">
+                          40s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions4" value="50s">
+                          50s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions5" value="60s">
+                          60s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions6" value="70s">
+                          70s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="ageRange" type="radio" id="AgeOptions7" value="Other">
+                          Other
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Partner's Age Range</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions1" value="20s">
+                          20s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions2" value="30s">
+                          30s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions3" value="40s">
+                          40s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions4" value="50s">
+                          50s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions5" value="60s">
+                          60s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions6" value="70s">
+                          70s
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="spouseAgeRange" type="radio" id="PartnerAgeOptions7" value="Other">
+                          Other
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Interested in fostering or adopting a DOG?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="fosterOrAdopt" type="radio" id="optionsDog1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="fosterOrAdopt" type="radio" id="optionsDog2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Sex?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="Sex" type="radio" id="optionsSex1" value="Male">
+                          Male
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="Sex" type="radio" id="optionsSex2" value="Female">
+                          Female
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="Sex" type="radio" id="optionsSex3" value="Either">
+                          Either
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputSpecificBreed" class="col-lg-3 control-label">Specific Breed</label>
+                    <div class="col-lg-9">
+                      <input name="breed" type="text" class="form-control" id="inputSpecificBreed">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputSpecialChar" class="col-lg-3 control-label">Special Characteristics</label>
+                    <div class="col-lg-9">
+                      <input name="specialChar" type="text" class="form-control" id="inputSpecialChar" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Are you applying for a specific animal?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="specificAnimal" type="radio" id="specificAnimal1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="specificAnimal" type="radio" id="specificAnimal2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputWho" class="col-lg-3 control-label">If so, who?</label>
+                    <div class="col-lg-9">
+                      <input name="who" type="text" class="form-control" id="inputWho" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="weightRange" class="col-lg-3 control-label">Approximate Weight Range</label>
+                    <div class="col-lg-9">
+                      <input name="weightRange" type="text" class="form-control" id="weightRange" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="approxAgeRange" class="col-lg-3 control-label">Approximate Age Range</label>
+                    <div class="col-lg-9">
+                      <input name="approxAgeRange" type="text" class="form-control" id="approxAgeRange" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="howSoon" class="col-lg-3 control-label">How soon do you want him/her?</label>
+                    <div class="col-lg-9">
+                      <input name="howSoon" type="text" class="form-control" id="howSoon" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="homePhone" class="col-lg-3 control-label">Home Phone</label>
+                    <div class="col-lg-9">
+                      <input name="homePhone" type="text" class="form-control" id="homePhone" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="inputEmail" class="col-lg-3 control-label">E-Mail Address</label>
+                    <div class="col-lg-9">
+                      <input name="email" type="text" class="form-control" id="inputEmail" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="workPhone" class="col-lg-3 control-label">Work Phone</label>
+                    <div class="col-lg-9">
+                      <input name="workPhone" type="text" class="form-control" id="workPhone" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="cellPhone" class="col-lg-3 control-label">Cell Phone</label>
+                    <div class="col-lg-9">
+                      <input name="cellPhone" type="text" class="form-control" id="cellPhone" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="whyAdopt" class="col-lg-3 control-label">Why do you want to adopt an animal?</label>
+                    <div class="col-lg-9">
+                      <input name="whyAdopt" type="text" class="form-control" id="whyAdopt" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Is the animal a gift?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="isGift" type="radio" id="isGift1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="isGift" type="radio" id="isGift2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Are you familiar with this breed?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="familiarBreed" type="radio" id="familiarBreed1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="familiarBreed" type="radio" id="familiarBreed2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="howMany" class="col-lg-3 control-label">How many animals have you had in the last 5 years?</label>
+                    <div class="col-lg-9">
+                      <input name="howMany" type="text" class="form-control" id="howMany" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="whatKind" class="col-lg-3 control-label">What kind?</label>
+                    <div class="col-lg-9">
+                      <input name="whatKind" type="text" class="form-control" id="whatKind" placeholder="">
+                    </div>
+                  </div>
+  
+                 <div class="form-group">
+                    <label for="whatAnimals" class="col-lg-3 control-label">What animals are at home now?</label>
+                    <div class="col-lg-9">
+                      <input name="whatAnimals" type="text" class="form-control" id="whatAnimals" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="animalList" class="col-lg-3 control-label">Give their species, breed, sex and ages</label>
+                    <div class="col-lg-9">
+                      <input name="animalList" type="text" class="form-control" id="animalList" placeholder="">
+                    </div>
+                  </div>
+    
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Have they all been neutered?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="neutered" type="radio" id="neutered1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="neutered" type="radio" id="neutered2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="whyNotNeutered" class="col-lg-3 control-label">If not, why not?</label>
+                    <div class="col-lg-9">
+                      <input name="whyNotNeutered" type="text" class="form-control" id="whyNotNeutered" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="whatHappened" class="col-lg-3 control-label">What happened to those no longer with you?</label>
+                    <div class="col-lg-9">
+                      <input name="whatHappened" type="text" class="form-control" id="whatHappened" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="veterinarian" class="col-lg-3 control-label">Veterinarian or Pet Hospital Reference</label>
+                    <div class="col-lg-9">
+                      <input name="veterinarian" type="text" class="form-control" id="veterinarian" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="personalReference" class="col-lg-3 control-label">Personal Reference (please include name(s), city, phone)</label>
+                    <div class="col-lg-9">
+                      <input name="personalReference" type="text" class="form-control" id="personalReference" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="numAdults" class="col-lg-3 control-label"># of Adults in the Home</label>
+                    <div class="col-lg-9">
+                      <input name="numAdults" type="text" class="form-control" id="numAdults" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="numChildren" class="col-lg-3 control-label"># of Children in the Home</label>
+                    <div class="col-lg-9">
+                      <input name="numChildren" type="text" class="form-control" id="numChildren" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="childrenMales" class="col-lg-3 control-label">Children:  Males Names & Ages</label>
+                    <div class="col-lg-9">
+                      <input name="childrenMales" type="text" class="form-control" id="childrenMales" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="childrenFemales" class="col-lg-3 control-label">Children:  Females Names & Ages</label>
+                    <div class="col-lg-9">
+                      <input name="childrenFemales" type="text" class="form-control" id="childrenFemales" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="grandKids" class="col-lg-3 control-label">Grandkids? Ages</label>
+                    <div class="col-lg-9">
+                      <input name="grandKids" type="text" class="form-control" id="grandKids" placeholder="">
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do all members of the household want an animal?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="allWant" type="radio" id="allWant1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="allWant" type="radio" id="allWant2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="responsible" class="col-lg-3 control-label">Who will be primarily responsible?</label>
+                    <div class="col-lg-9">
+                      <input name="responsible" type="text" class="form-control" id="responsible" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Does anyone have an allergy?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="allergy" type="radio" id="allergy1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="allergy" type="radio" id="allergy2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="occupation" class="col-lg-3 control-label">What is your occupation?</label>
+                    <div class="col-lg-9">
+                      <input name="occupation" type="text" class="form-control" id="occupation" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="occLocation" class="col-lg-3 control-label">Location?</label>
+                    <div class="col-lg-9">
+                      <input name="occLocation" type="text" class="form-control" id="occLocation" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="partnerOccupation" class="col-lg-3 control-label">What is your partner's occupation?</label>
+                    <div class="col-lg-9">
+                      <input name="partnerOccupation" type="text" class="form-control" id="partnerOccupation" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="partOccLocation" class="col-lg-3 control-label">Location?</label>
+                    <div class="col-lg-9">
+                      <input name="partOccLocation" type="text" class="form-control" id="partOccLocation" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="hoursAway" class="col-lg-3 control-label">How many hours are you away from home each day?</label>
+                    <div class="col-lg-9">
+                      <input name="hoursAway" type="text" class="form-control" id="hoursAway" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="partnerHoursAway" class="col-lg-3 control-label">How many hours is your partner away from home each day?</label>
+                    <div class="col-lg-9">
+                      <input name="partnerHoursAway" type="text" class="form-control" id="partnerHoursAway" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="animalSleep" class="col-lg-3 control-label">Where will the animal sleep at night? (Please be specific)</label>
+                    <div class="col-lg-9">
+                      <input name="animalSleep" type="text" class="form-control" id="animalSleep" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="animalStay" class="col-lg-3 control-label">Where will the animal stay during the day? (Please be specific)</label>
+                    <div class="col-lg-9">
+                      <input name="animalStay" type="text" class="form-control" id="animalStay" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="stories" class="col-lg-3 control-label">How many stories in your home/apartment?</label>
+                    <div class="col-lg-9">
+                      <input name="stories" type="text" class="form-control" id="stories" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do you have screens on your windows?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="screens" type="radio" id="screens1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="screens" type="radio" id="screens2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do you have a yard?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="yard" type="radio" id="yard1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="yard" type="radio" id="yard2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do you have a fence?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="fence" type="radio" id="fence1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="fence" type="radio" id="fence2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="fenceHeight" class="col-lg-3 control-label">How high?</label>
+                    <div class="col-lg-9">
+                      <input name="fenceHeight" type="text" class="form-control" id="fenceHeight" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do you have a patio?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="patio" type="radio" id="patio1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="patio" type="radio" id="patio2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Is it enclosed?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="patioEnclosed" type="radio" id="patioEnclosed1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="patioEnclosed" type="radio" id="patioEnclosed2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="whoCare" class="col-lg-3 control-label">When you go away, who will care for the animal?</label>
+                    <div class="col-lg-9">
+                      <input name="whoCare" type="text" class="form-control" id="whoCare" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Do you agree to keep dog on a LEASH when outdoors in unprotected area?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="keepOnLeash" type="radio" id="keepOnLeash1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="keepOnLeash" type="radio" id="keepOnLeash2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="howLongKeep" class="col-lg-3 control-label">How long do you expect to keep this animal?</label>
+                    <div class="col-lg-9">
+                      <input name="howLongKeep" type="text" class="form-control" id="howLongKeep" placeholder="">
+                    </div>
+                  </div>
+
+                 <div class="form-group">
+                    <label for="surrenderCircumstances" class="col-lg-3 control-label">Under what circumstances would you surrender him/her?</label>
+                    <div class="col-lg-9">
+                      <input name="surrenderCircumstances" type="text" class="form-control" id="surrenderCircumstances" placeholder="">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">If dog needs obedience training, are you willing and able to do this?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="obedienceTraining" type="radio" id="obedienceTraining1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="obedienceTraining" type="radio" id="obedienceTraining2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">If dog needs house training, are you willing and able to do this?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="houseTraining" type="radio" id="houseTraining1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="houseTraining" type="radio" id="houseTraining2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">If your animal had an emergency or serious illness, how much would you be able and/or willing to spend on his/her care?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="careAmount" type="radio" id="careAmount1" value="$100">
+                          $100
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="careAmount" type="radio" id="careAmount2" value="$250">
+                          $250
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="careAmount" type="radio" id="careAmount3" value="$500">
+                          $500
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="careAmount" type="radio" id="careAmount4" value="$1,000">
+                          $1,000
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="careAmount" type="radio" id="careAmount5" value="Whatever it takes">
+                          Whatever it takes
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Would you object to an All Creatures’ representative visiting your home prior to or following an adoption?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="homeVisit" type="radio" id="homeVisit1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="homeVisit" type="radio" id="homeVisit2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Would you be willing to foster an animal while waiting for your preferred, permanent pet?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="willingFoster" type="radio" id="willingFoster1" value="Yes">
+                          Yes
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="willingFoster" type="radio" id="willingFoster2" value="No">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label">Where did you learn about All Creatures?</label>
+                    <div class="col-lg-9">
+                      <div class="radio">
+                        <label>
+                          <input name="whereLearn" type="radio" id="whereLearn1" value="Petfinder">
+                          Petfinder
+                        </label>
+                      </div>
+
+
+                      <div class="radio">
+                        <label>
+                          <input name="whereLearn" type="radio" id="whereLearn2" value="Adopt-a-Pet">
+                          Adopt-a-Pet
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="whereLearn" type="radio" id="whereLearn3" value="Flyer/Poster">
+                          Flyer/Poster <input type="text" name="whereFlyer" placeholder="Where?" />
+                        </label>
+                      </div>
+
+
+                      <div class="radio">
+                        <label>
+                          <input name="whereLearn" type="radio" id="whereLearn4" value="Friend">
+                          Friend  <input type="text" name="referredBy" placeholder="Referred by?" />
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="whereLearn" type="radio" id="whereLearn5" value="Other Pet Site">
+                          Other Pet Site  <input type="text" name="otherPetSite" placeholder="Other site" />
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input name="whereLearn" type="radio" id="whereLearn6" value="All Creatures' Website">
+                          All Creatures' Website
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                      <button id="cancelButton" type="reset" class="btn btn-default">Cancel</button>
+                      <button id="submitButton" type="submit" class="btn btn-warning">Submit</button>
+                      <label><img id="loader" src="http://dev.cloudcell.co.uk/bin/loading.gif"/></label>
+
+                    </div>
+                  </div>
+
+
+                </fieldset>
+              </form>
+            </div>
+
+
+<!--     // <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    // <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    // <script src="../assets/js/custom.js"></script> -->
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+
+          // process the form
+          $('form').submit(function(event) {
+
+              $(this).val('Please wait ...')
+      .attr('disabled','disabled');
+
+              // get the form data
+              // there are many ways to get this data using jQuery (you can use the class or id also)
+              // var formData = {
+              //     'inputName'              : $('input[name=inputName]').val(),
+              //     'inputSpouse'             : $('input[name=inputSpouse]').val(),
+              //     'OwnorRent'    : $('input[name=OwnorRent]').val(),
+              //     'whereFlyer'    : $('input[name=whereFlyer]').val(),
+
+              // };
+
+
+var formData = {'inputName': $('input[name=inputName]').val(),
+'inputSpouse': $('input[name=inputSpouse]').val(),
+'inputAddress': $('input[name=inputAddress]').val(),
+'ownOrRent': $('input[name=ownOrRent]:checked').val(),
+'dwellingType': $('input[name=dwellingType]:checked').val(),
+'inputHowLong': $('input[name=inputHowLong]').val(),
+'animalsAllowed': $('input[name=animalsAllowed]:checked').val(),
+'allowedInLease': $('input[name=allowedInLease]:checked').val(),
+'ageRange': $('input[name=ageRange]:checked').val(),
+'spouseAgeRange': $('input[name=spouseAgeRange]:checked').val(),
+'fosterOrAdopt': $('input[name=fosterOrAdopt]:checked').val(),
+'Sex': $('input[name=Sex]:checked').val(),
+'breed': $('input[name=breed]').val(),
+'specialChar': $('input[name=specialChar]').val(),
+'specificAnimal': $('input[name=specificAnimal]:checked').val(),
+'who': $('input[name=who]').val(),
+'weightRange': $('input[name=weightRange]').val(),
+'approxAgeRange': $('input[name=approxAgeRange]').val(),
+'howSoon': $('input[name=howSoon]').val(),
+'homePhone': $('input[name=homePhone]').val(),
+'email': $('input[name=email]').val(),
+'workPhone': $('input[name=workPhone]').val(),
+'cellPhone': $('input[name=cellPhone]').val(),
+'whyAdopt': $('input[name=whyAdopt]').val(),
+'isGift': $('input[name=isGift]:checked').val(),
+'familiarBreed': $('input[name=familiarBreed]:checked').val(),
+'howMany': $('input[name=howMany]').val(),
+'whatKind': $('input[name=whatKind]').val(),
+'whatAnimals': $('input[name=whatAnimals]').val(),
+'animalList': $('input[name=animalList]').val(),
+'neutered': $('input[name=neutered]:checked').val(),
+'whyNotNeutered': $('input[name=whyNotNeutered]').val(),
+'whatHappened': $('input[name=whatHappened]').val(),
+'veterinarian': $('input[name=veterinarian]').val(),
+'personalReference': $('input[name=personalReference]').val(),
+'numAdults': $('input[name=numAdults]').val(),
+'numChildren': $('input[name=numChildren]').val(),
+'childrenMales': $('input[name=childrenMales]').val(),
+'childrenFemales': $('input[name=childrenFemales]').val(),
+'grandKids': $('input[name=grandKids]').val(),
+'allWant': $('input[name=allWant]:checked').val(),
+'responsible': $('input[name=responsible]').val(),
+'allergy': $('input[name=allergy]:checked').val(),
+'occupation': $('input[name=occupation]').val(),
+'occLocation': $('input[name=occLocation]').val(),
+'partnerOccupation': $('input[name=partnerOccupation]').val(),
+'partOccLocation': $('input[name=partOccLocation]').val(),
+'hoursAway': $('input[name=hoursAway]').val(),
+'partnerHoursAway': $('input[name=partnerHoursAway]').val(),
+'animalSleep': $('input[name=animalSleep]').val(),
+'animalStay': $('input[name=animalStay]').val(),
+'stories': $('input[name=stories]').val(),
+'screens': $('input[name=screens]:checked').val(),
+'yard': $('input[name=yard]:checked').val(),
+'fence': $('input[name=fence]:checked').val(),
+'fenceHeight': $('input[name=fenceHeight]').val(),
+'patio': $('input[name=patio]:checked').val(),
+'patioEnclosed': $('input[name=patioEnclosed]:checked').val(),
+'whoCare': $('input[name=whoCare]').val(),
+'keepOnLeash': $('input[name=keepOnLeash]:checked').val(),
+'howLongKeep': $('input[name=howLongKeep]').val(),
+'surrenderCircumstances': $('input[name=surrenderCircumstances]').val(),
+'obedienceTraining': $('input[name=obedienceTraining]:checked').val(),
+'houseTraining': $('input[name=houseTraining]:checked').val(),
+'careAmount': $('input[name=careAmount]:checked').val(),
+'homeVisit': $('input[name=homeVisit]:checked').val(),
+'willingFoster': $('input[name=willingFoster]:checked').val(),
+'whereLearn': $('input[name=whereLearn]:checked').val(),
+'whereFlyer': $('input[name=whereFlyer]').val(),
+'referredBy': $('input[name=referredBy]').val(),
+'otherPetSite': $('input[name=otherPetSite]').val()};
+ 
+
+
+              $("#submitButton").prop('disabled', true);
+              $("#cancelButton").prop('disabled', true);
+              $("#submitButton").html('Please wait ...');
+              $("#loader").show();
+              // process the form
+              $.ajax({
+                  type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                  url         : '/adoptionApp', // the url where we want to POST
+                  data        : formData, // our data object
+                  dataType    : 'json', // what type of data do we expect back from the server
+                  encode      : true,
+                  success     : function(data) {
+                    $("#loader").hide();
+                    $("#submitButton").html('Submit');                    
+                    $("#submitButton").prop('disabled', false);
+                    $("#cancelButton").prop('disabled', false);
+                    alert("Your application has been successfully submitted.  Thank you.");
+
+                    window.location.replace("http://www.allcreaturesmarin.org/");
+
+                    // window.location.replace("https://arcane-cove-49363.herokuapp.com/");
+                    console.log(data);
+                  },
+                  error       : function(error) {
+                    $("#loader").hide();
+                    $("#submitButton").html('Submit');                    
+                    $("#submitButton").prop('disabled', false);
+                    $("#cancelButton").prop('disabled', false);
+                    alert("There was an error submitting your application.  PLEASE TRY AGAIN");
+                    console.log(error);
+                  }
+              });
+                  // using the done promise callback
+                  // .done(function(data) {
+
+                  //     // log data to the console so we can see
+                  //     console.log(data); 
+                  //     $("#loader").hide();
+                  //     console.log("DO WE GET HERE");
+                  //                     // here we will handle errors and validation messages
+
+                  // });
+
+                  // .error(function(error) {
+                  //    console.log(error);
+                  //     $("#loader").hide();
+                  //    console.log("JOHN ERROR OCCURRED");                     
+                  // })
+
+              // stop the form from submitting the normal way and refreshing the page
+              event.preventDefault();
+          });
+      });
+    </script>
+
+
+  <script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+/* ]]> */
+</script>
+
+
+
+
+</body></html>
+
+
+
+
+

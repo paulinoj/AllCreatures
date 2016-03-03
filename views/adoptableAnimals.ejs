@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include head %>
+  <body>
+
+   <div class="container">
+
+    <% include navbar %>
+
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">
+        <div class="webPageHeading">Adoptable Animals</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- </div> -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="scripts/jquery.form.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+      // var adoptee = "adoptee1";
+
+      var counter = 1;
+      var changeList = {};
+      var stagger = 0;
+
+
+      var applyEvents = function() {
+
+        $('img').on('click', function(e) {
+          // $e.preventDefault();
+          var $adopteeSection = $(this).closest(".adoptee_section");
+          var $viewer = $adopteeSection.find('.viewer');
+          $viewer.attr("src", $(this).attr("src"));
+        }); 
+      };
+
+
+      var refreshAdoptees = function(data) {
+
+      // WRITE CODE HERE TO CLEAR OUT TEMPORARY UPLOADS DIRECTORY
+
+
+        for (stagger=0; stagger<data.length; stagger++) {
+
+          changeList[data[stagger]._id] = {_id: data[stagger]._id, addedPhotos: [], deletedPhotos: [], changedTitle: null, changedText: null};
+
+          var currentAdoptee = data[stagger];
+          var adoptee = currentAdoptee._id;
+          var $newAdoptee = $('<div></div>');
+          $newAdoptee.addClass('adoptee_section');
+          $newAdoptee.addClass(adoptee);
+          $('.container').append($newAdoptee);
+          var $newAdopteeTitle = $('<div style="width: 100%" class="adoptee_head text-center name"></div>');
+          $newAdopteeTitle.html(data[stagger].name);
+
+          $newAdoptee.append($newAdopteeTitle);
+          var $newAdopteeBody = $('<div class="row"></div>');
+
+
+          var $newAdopteePhotoSection = $('<div class="col-lg-6 adoptee_photo"></div>');
+          var $newAdopteeViewer = $('<img src="images/no_photo.jpg" alt="" width="100%" />');
+          $newAdopteeViewer.addClass('viewer');
+          $newAdopteePhotoSection.append($newAdopteeViewer);
+          $newAdoptee.append($newAdopteeBody);
+          var $thumbnailSection = $('<div class="row thumbnail_section"></div>');
+          $thumbnailSection.append('<p class = "clearfix" style = "bottom-padding:400"></p>');
+          for (var j=0; j < currentAdoptee.photos.length; j++) {
+            var $thumbnail = $('<div class="col-sm-2 col-lg-2 text-center"></div>');
+            $thumbnail.addClass('thumbnail_group');
+            var $thumbnailAnchor = $('<a href = "javascript:void(0);" class="thumbnail"></a>');
+            var $thumbnailImage = $('<img alt="" width = "100%" height = "100%" />');
+            $thumbnailImage.attr('src', currentAdoptee.photos[j]);
+            if (j===0) {
+              $newAdopteeViewer.attr('src', currentAdoptee.photos[0]);
+            }
+            $thumbnailAnchor.append($thumbnailImage);
+            $thumbnail.append($thumbnailAnchor);
+            $thumbnailSection.append($thumbnail);            
+          }
+          $newAdopteePhotoSection.append($thumbnailSection);
+
+          var $textSection = $('<div class="col-lg-6 text_section"></div>');
+          var brokenText = currentAdoptee.description.split(/\n/);
+          var newLine;
+          var lastLineBlank = false;
+
+          for (var m=0; m < brokenText.length; m++) {
+            $newLine = $('<div></div>');
+            if (lastLineBlank) {
+              $newLine.addClass("adoptee_body_double");
+            }
+            else
+            {
+              $newLine.addClass("adoptee_body_single")
+            }
+            if (brokenText[m].length == 0) {
+              lastLineBlank = true;
+            }
+            else
+            {
+              lastLineBlank = false;
+            }
+
+            $newLine.html(brokenText[m]);
+            $textSection.append($newLine);
+          }
+ 
+          if (stagger % 2 === 0) {
+            $newAdopteeBody.append($newAdopteePhotoSection);
+            $newAdopteeBody.append($textSection);
+          }
+          else
+          {
+            $newAdopteeBody.append($textSection);            
+            $newAdopteeBody.append($newAdopteePhotoSection);
+          }
+
+        }
+
+
+    applyEvents();
+
+    };
+
+
+
+
+      // WHAT IS THE PURPOSE OF formData
+
+      var formData = {"hello": "goodbye"};
+
+      $.ajax({
+          type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+          url         : '/testDatabase', // the url where we want to POST
+          data        : formData, // our data object
+          dataType    : 'json', // what type of data do we expect back from the server
+          encode      : true,
+          success     : function(data) {
+            refreshAdoptees(data);
+          },
+          error       : function(error) {
+            console.log("COULD NOT GET ADOPTEES");
+            console.log(error);
+          }
+      });
+
+
+
+    </script>
+
+ 
+
+
+  </body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include head %>
+  <body>
+
+   <div class="container">
+
+    <% include navbar %>
+
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">
+        <div class="webPageHeading">Adoptable Animals * EDIT MODE *</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div style="text-align: center"><button style="width: 50%; height: 50px" class="addNewAdoptee">Add New Adoptee</button></div>
+
+  <!-- </div> -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="scripts/jquery.form.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+      var counter = 1;
+      var changeList = {};
+      var stagger = 0;
+
+      var upload_file = function(file, signed_request, url, adoptee, adopteeSection){
+          var xhr = new XMLHttpRequest();
+          xhr.open("PUT", signed_request);
+          xhr.setRequestHeader('x-amz-acl', 'public-read');
+          xhr.onload = function() {
+              if (xhr.status === 200) {
+                var $thumbnail = $('<div class="col-sm-2 col-lg-2 text-center"></div>');
+                $thumbnail.addClass('thumbnail_group');
+                var $thumbnailAnchor = $('<a href = "javascript:void(0);" class="thumbnail"></a>');
+                var $thumbnailImage = $('<img alt="" width = "100%" height = "100%" />');
+                $thumbnailImage.attr('src', url);
+                var $viewer = adopteeSection.find('.viewer');
+                $viewer.attr('src', url);
+
+                changeList[adoptee]['addedPhotos'].push(url);
+                console.log(changeList[adoptee]);
+                var $thumbnailSection = adopteeSection.find('.thumbnail_section');
+
+                $thumbnailAnchor.append($thumbnailImage);
+                $thumbnail.append($thumbnailAnchor);
+                $thumbnailSection.append($thumbnail);
+
+                $thumbnailImage.on('click', function(e) {
+                  // $e.preventDefault();
+                  var photoClass = adoptee;
+                  var photoSrc = $(this).attr("src");
+                  $viewer.attr("src", photoSrc);
+                });       
+
+                  // adopteeSection.find('.viewer').attr('src', url);
+
+                  // document.getElementById("preview").src = url;
+                  // document.getElementById("avatar_url").value = url;
+              }
+          };
+          xhr.onerror = function() {
+              alert("Could not upload file.");
+          };
+          xhr.send(file);
+      };
+
+      var get_signed_request = function(file, adoptee, adopteeSection){
+
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
+          xhr.onreadystatechange = function(){
+              if(xhr.readyState === 4){
+                  if(xhr.status === 200){
+                      var response = JSON.parse(xhr.responseText);
+                      upload_file(file, response.signed_request, response.url, adoptee, adopteeSection);
+                  }
+                  else{
+                      alert("Could not get signed URL.");
+                  }
+              }
+          };
+          xhr.send();
+      };
+
+      var applyEvents = function(adoptee) {
+
+      var $adopteeSection = $(".adoptee_section." + adoptee);
+        
+      var $input = $adopteeSection.find('input')
+      $input.on('change', function(e) {
+        var files = $input[0].files;
+        var file = files[0];
+        console.log(file);
+
+        if(file == null){
+            alert("No file selected.");
+        }
+        else{
+            get_signed_request(file, adoptee, $adopteeSection);
+        }
+      });
+
+      // var $thumbnailSection = $adopteeSection.find('.thumbnail_section');
+
+      // $thumbnailImage.on('click', function(e) {
+      //   // $e.preventDefault();
+      //   var photoClass = adoptee;
+      //   var photoSrc = $(this).attr("src");
+      //   $viewer.attr("src", photoSrc);
+      // });  
+
+      var $thisUpdateButton = $adopteeSection.find('button.update_button');
+      $thisUpdateButton.on('click', function(e) {
+        console.log("UPDATE BEING CALLED");
+        var adopteeUpdateData = changeList[adoptee];
+        console.log(changeList);
+        adopteeUpdateData.changedText = $adopteeSection.find('textarea.description').val();
+        adopteeUpdateData.changedTitle = $adopteeSection.find('textarea.name').val();
+
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : '/update', // the url where we want to POST
+            data        : adopteeUpdateData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+            encode      : true,
+            success     : function(data) {
+              console.log("SUCCESSFULLY UPDATED");
+              console.log(data);
+              alert("Your changes have been successfully saved!");
+              if (data.id !=='0') {
+
+                $adopteeSection.removeClass(adoptee);
+                $adopteeSection.addClass(data.id);
+                changeList[data.id] = changeList[adoptee];
+                changeList[data.id]["_id"] = data.id;
+                console.log(changeList[data.id]);
+                changeList[data.id]["addedPhotos"] = [];
+                changeList[data.id]["deletedPhotos"] = [];
+
+              }
+              else
+              {
+                changeList[adoptee]["addedPhotos"] = [];
+                changeList[adoptee]["deletedPhotos"] = [];
+              }
+            },
+            error       : function(error) {
+              console.log("NOT SUCCESSFULLY UPDATED");
+              console.log(error);
+              alert("Error!  Please try saving again");
+            }
+        });
+
+      });
+
+
+      var $thisImg = $adopteeSection.find('img');
+      $thisImg.on('click', function(e) {
+        // $e.preventDefault();
+        var $viewer = $adopteeSection.find('.viewer');
+        $viewer.attr("src", $(this).attr("src"));
+      }); 
+
+
+      var $thisDeleteButton = $adopteeSection.find('button.deletePhoto');
+      $thisDeleteButton.on('click', function(e) {
+        var $viewer = $adopteeSection.find('.viewer');
+        var $selectedPhoto = $viewer.attr('src');
+        var thumbnailGroups = $adopteeSection.find('.thumbnail_group');
+        var $thumbnailGroups = $(thumbnailGroups);
+        $thumbnailGroups.each(function(index, element) {
+          var replacementPhoto;
+          if ($(element).find('img').attr('src') === $selectedPhoto) {
+            if ($thumbnailGroups.length === 1) {
+              replacementPhoto = 'images/no_photo.jpg';
+            }
+            else if (index === $thumbnailGroups.length - 1) {
+              replacementPhoto = $thumbnailGroups[index-1];
+              replacementPhoto = $(replacementPhoto).find('img').attr('src');
+            }
+            else {
+              replacementPhoto = $thumbnailGroups[index+1];
+              replacementPhoto = $(replacementPhoto).find('img').attr('src');
+            }
+            $viewer.attr('src', replacementPhoto);
+            changeList[adoptee]['deletedPhotos'].push($selectedPhoto);
+            console.log("JOHN HERE IT IS");
+            console.log(changeList);
+            $(element).remove();
+            return false;
+          }
+
+        });
+
+      });
+
+      var $thisDeleteAdoptee = $adopteeSection.find('button.deleteAdoptee');
+      $thisDeleteAdoptee.on('click', function(e) {
+        e.preventDefault();
+
+        var adopteeDeleteData = {_id: adoptee};
+
+        if (adoptee.substr(0, 10) !== "newAdoptee") {
+
+
+          $.ajax({
+              type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+              url         : '/deleteAdoptee', // the url where we want to POST
+              data        : adopteeDeleteData, // our data object
+              dataType    : 'json', // what type of data do we expect back from the server
+              encode      : true,
+              success     : function(data) {
+                console.log("SUCCESSFULLY DELETED");
+                $adopteeSection.remove();
+                console.log(data);
+              },
+              error       : function(error) {
+                console.log("NOT SUCCESSFULLY DELETED");
+                console.log(error);
+              }
+          });
+
+
+
+        }
+        else
+        {
+          $adopteeSection.remove();
+        }
+        // DELETE ADOPTEE SECTION;
+        // DELETE CHANGE LIST FOR IT 
+
+      });
+
+
+      };
+
+
+
+      var refreshAdoptees = function(data) {
+
+      // WRITE CODE HERE TO CLEAR OUT TEMPORARY UPLOADS DIRECTORY
+
+
+        for (stagger=0; stagger<data.length; stagger++) {
+
+          changeList[data[stagger]._id] = {_id: data[stagger]._id, addedPhotos: [], deletedPhotos: [], changedTitle: null, changedText: null};
+
+          var currentAdoptee = data[stagger];
+          var adoptee = currentAdoptee._id;
+          var $newAdoptee = $('<div></div>');
+          $newAdoptee.addClass('adoptee_section');
+          $newAdoptee.addClass(adoptee);
+          $('.container').append($newAdoptee);
+          var $newAdopteeTitle = $('<textarea style="width: 100%" class="adoptee_head text-center name"></textarea>');
+          $newAdopteeTitle.val(data[stagger].name);
+
+          $newAdoptee.append($newAdopteeTitle);
+          var $newAdopteeBody = $('<div class="row"></div>');
+
+
+          var $newAdopteePhotoSection = $('<div class="col-lg-6 adoptee_photo"></div>');
+          var $newAdopteeViewer = $('<img src="images/no_photo.jpg" alt=""/>');
+          $newAdopteeViewer.addClass('viewer');
+          $newAdopteePhotoSection.append($newAdopteeViewer);
+          $newAdoptee.append($newAdopteeBody);
+          var $thumbnailSection = $('<div class="row thumbnail_section"></div>');
+          $thumbnailSection.append('<p class = "clearfix" style = "bottom-padding:400"></p>');
+          for (var j=0; j < currentAdoptee.photos.length; j++) {
+            var $thumbnail = $('<div class="col-sm-2 col-lg-2 text-center"></div>');
+            $thumbnail.addClass('thumbnail_group');
+            var $thumbnailAnchor = $('<a href = "javascript:void(0);" class="thumbnail"></a>');
+            var $thumbnailImage = $('<img alt="" width = "100%" height = "100%" />');
+            $thumbnailImage.attr('src', currentAdoptee.photos[j]);
+            if (j===0) {
+              $newAdopteeViewer.attr('src', currentAdoptee.photos[0]);
+            }
+            $thumbnailAnchor.append($thumbnailImage);
+            $thumbnail.append($thumbnailAnchor);
+            $thumbnailSection.append($thumbnail);            
+          }
+          $newAdopteePhotoSection.append($thumbnailSection);
+
+          var $textSection = $('<div class="col-lg-6 text_section"></div>');
+          var $text = $('<textarea class="adoptee_body description" style="width: 90%; height: 400px"></textarea>');
+          $text.html(currentAdoptee.description);
+          $textSection.append($text);
+ 
+          if (stagger % 2 === 0) {
+            $newAdopteeBody.append($newAdopteePhotoSection);
+            $newAdopteeBody.append($textSection);
+          }
+          else
+          {
+            $newAdopteeBody.append($textSection);            
+            $newAdopteeBody.append($newAdopteePhotoSection);
+          }
+
+          $newAdopteeButtonSection = $('<div class="row"></div>');
+
+          var $photoButtonSection = $('<div"></div>');
+          $newAdopteePhotoSection.append($photoButtonSection);
+;
+          var $imageInput = $('<input class="form-control" style="float: left" name="image" type="file"/>');
+          var $addPhotoButton = $('<input class="btn btn-success addPhoto" style="float: left" type="submit" value="Add Photo"/>');
+          $photoButtonSection.append($imageInput);
+          var $deletePhotoButton = $('<button style="float: right" class="deletePhoto btn btn-primary">Delete Photo</button>');
+          $photoButtonSection.append($deletePhotoButton);
+
+          var $updateButtonSection = $('<div class="col-lg-12"></div>');
+          var $updateButton = $('<button class="update_button btn btn-success">Save changes for this animal</button>');
+          $updateButtonSection.append($updateButton);
+
+          $newAdopteeButtonSection.append($updateButtonSection);
+
+          $newAdoptee.append($newAdopteeButtonSection);
+
+          var $deleteAdopteeButton = $('<button class="deleteAdoptee btn btn-primary">Delete this adoptee</button>');
+
+          $updateButtonSection.append($deleteAdopteeButton);
+
+          applyEvents(adoptee);
+
+        }
+
+
+    // applyEvents();
+
+    };
+
+
+      var formData = {"hello": "goodbye"};
+
+      $.ajax({
+          type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+          url         : '/testDatabase', // the url where we want to POST
+          data        : formData, // our data object
+          dataType    : 'json', // what type of data do we expect back from the server
+          encode      : true,
+          success     : function(data) {
+            console.log("HERE ARE YOUR ADOPTEES:");
+            console.log(data);
+            refreshAdoptees(data);
+          },
+          error       : function(error) {
+            console.log("COULD NOT GET ADOPTEES");
+            console.log(error);
+          }
+      });
+
+
+      $('button.addNewAdoptee').on('click', function(e) {
+        var currentAdoptee = "newAdoptee" + counter;
+        counter++;
+
+        changeList[currentAdoptee] = {_id: currentAdoptee, addedPhotos: [], deletedPhotos: [], changedTitle: null, changedText: null};
+
+
+          var adoptee = currentAdoptee;
+
+
+          var $newAdoptee = $('<div></div>');
+          $newAdoptee.addClass('adoptee_section');
+          $newAdoptee.addClass(adoptee);
+          $('.container').append($newAdoptee);
+          var $newAdopteeTitle = $('<textarea style="width: 100%" class="adoptee_head text-center name"></textarea>');
+          $newAdopteeTitle.val("[INSERT ADOPTEE'S NAME]");
+
+          $newAdoptee.append($newAdopteeTitle);
+          var $newAdopteeBody = $('<div class="row"></div>');
+
+
+          var $newAdopteePhotoSection = $('<div class="col-lg-6 adoptee_photo"></div>');
+          var $newAdopteeViewer = $('<img src="images/no_photo.jpg" alt="" width="100%" />');
+          $newAdopteeViewer.addClass('viewer');
+          $newAdopteePhotoSection.append($newAdopteeViewer);
+          $newAdoptee.append($newAdopteeBody);
+          var $thumbnailSection = $('<div class="row thumbnail_section"></div>');
+          $thumbnailSection.append('<p class = "clearfix" style = "bottom-padding:400"></p>');
+
+          $newAdopteePhotoSection.append($thumbnailSection);
+
+          var $textSection = $('<div class="col-lg-6 text_section"></div>');
+          var $text = $('<textarea class="adoptee_body description" style="width: 90%; height: 500px"></textarea>');
+          $text.html("[Description of Adoptee goes here]");
+          $textSection.append($text);
+ 
+          if (stagger % 2 === 0) {
+            $newAdopteeBody.append($newAdopteePhotoSection);
+            $newAdopteeBody.append($textSection);
+          }
+          else
+          {
+            $newAdopteeBody.append($textSection);            
+            $newAdopteeBody.append($newAdopteePhotoSection);
+          }
+          stagger++;
+
+          $newAdopteeButtonSection = $('<div class="row"></div>');
+
+          var $photoButtonSection = $('<div"></div>');
+          $newAdopteePhotoSection.append($photoButtonSection);
+;
+          var $imageInput = $('<input class="form-control" style="float: left" name="image" type="file"/>');
+          var $addPhotoButton = $('<input class="btn btn-success addPhoto" style="float: left" type="submit" value="Add Photo"/>');
+          $photoButtonSection.append($imageInput);
+          var $deletePhotoButton = $('<button style="float: right" class="deletePhoto btn btn-primary">Delete Photo</button>');
+          $photoButtonSection.append($deletePhotoButton);
+
+          var $updateButtonSection = $('<div class="col-lg-12"></div>');
+          var $updateButton = $('<button class="update_button btn btn-success">Save changes for this animal</button>');
+          $updateButtonSection.append($updateButton);
+
+          $newAdopteeButtonSection.append($updateButtonSection);
+
+          $newAdoptee.append($newAdopteeButtonSection);
+
+          var $deleteAdopteeButton = $('<button class="deleteAdoptee btn btn-primary">Delete this adoptee</button>');
+
+          $updateButtonSection.append($deleteAdopteeButton);
+
+
+
+          applyEvents(adoptee);
+
+      });
+
+
+
+    </script>
+
+ 
+
+
+  </body>
+</html>
